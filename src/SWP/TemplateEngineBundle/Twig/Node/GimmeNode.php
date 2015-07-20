@@ -16,7 +16,7 @@ class GimmeNode extends \Twig_Node
      * @param integer               $lineno
      * @param string                $tag
      */
-    public function __construct(\Twig_Node_Expression $annotation, \Twig_Node_Expression $parameters, \Twig_NodeInterface $body, $lineno, $tag = null)
+    public function __construct(\Twig_Node_Expression $annotation, \Twig_Node_Expression $parameters = null, \Twig_NodeInterface $body, $lineno, $tag = null)
     {
         parent::__construct(array('parameters' => $parameters, 'body' => $body, 'annotation' => $annotation), array(), $lineno, $tag);
     }
@@ -31,10 +31,16 @@ class GimmeNode extends \Twig_Node
         $compiler
             ->addDebugInfo($this)
             ->write("\$swpMetaLoader".$i." = \$this->getEnvironment()->getExtension('swp_gimme')->getLoader();\n")
-            ->write("\$swpMeta".$i." = \$swpMetaLoader".$i."->load(")->subcompile($this->getNode('annotation'))->raw(", ")->subcompile($this->getNode('parameters'))->write(");\n")
+            ->write("\$swpMeta".$i." = \$swpMetaLoader".$i."->load(")->subcompile($this->getNode('annotation'))->raw(", ");
+                if (!is_null($this->getNode('parameters'))) {
+                    $compiler->subcompile($this->getNode('parameters'));
+                } else {
+                    $compiler->raw("null");
+                }
+                $compiler->raw(");\n")
             ->write("if (\$swpMeta".$i." !== false) {\n")
             ->indent()
-                ->write("\$context[")->subcompile($this->getNode('annotation'))->write("] = \$swpMeta".$i.";")
+                ->write("\$context[")->subcompile($this->getNode('annotation'))->raw("] = \$swpMeta".$i.";")
                 ->subcompile($this->getNode('body'))
                 ->write("\n")
             ->outdent()

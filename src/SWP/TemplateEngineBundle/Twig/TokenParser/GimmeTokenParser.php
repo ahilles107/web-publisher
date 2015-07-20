@@ -36,8 +36,10 @@ class GimmeTokenParser extends \Twig_TokenParser
         $stream = $this->parser->getStream();
 
         $annotation = $this->parser->getExpressionParser()->parseExpression();
-
-        $parameters = $this->parser->getExpressionParser()->parseExpression();
+        $parameters = null;
+        if ($stream->test(\Twig_Token::PUNCTUATION_TYPE, '{')) {
+            $parameters = $this->parser->getExpressionParser()->parseExpression();
+        }
 
         $stream->expect(\Twig_Token::BLOCK_END_TYPE);
         $body = $this->parser->subparse(array($this, 'decideCacheEnd'), true);
