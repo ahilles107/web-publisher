@@ -2,6 +2,8 @@
 
 namespace SWP\TemplateEngineBundle\Gimme\Loader;
 
+use SWP\TemplateEngineBundle\Gimme\Meta\Meta;
+
 class ArticleLoader implements LoaderInterface
 {
     /**
@@ -12,11 +14,12 @@ class ArticleLoader implements LoaderInterface
      *
      * @return Meta|bool false if meta cannot be loaded, a Meta instance otherwise
      */
-    public function load($type, $parameter)
+    public function load($type, $parameters)
     {
-        return 'Article 234';
-
-        return false;
+        return new Meta(__APP_DIR__ . '/Resources/meta/article.yml', array(
+            'title' => 'New article',
+            'keywords' => 'lorem, ipsum, dolor, sit, amet'
+        ));
     }
 
     public function isSupported($type)
