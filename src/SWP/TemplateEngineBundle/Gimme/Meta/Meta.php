@@ -16,7 +16,7 @@ class Meta
     /**
      * Original Meta values (json|array)
      *
-     * @var json|array
+     * @var string|array
      */
     protected $values;
 
@@ -58,8 +58,7 @@ class Meta
     private function fillFromArray(array $values)
     {   
         foreach ($this->getExposedProperties($values) as $key => $propertyValue) {
-                $this->$key = $propertyValue;
-                $valuesArray[$key] = $propertyValue;
+            $this->$key = $propertyValue;
         }
 
         return true;
