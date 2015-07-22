@@ -3,7 +3,7 @@ namespace SWP\TemplateEngineBundle\Tests\Twig\Node;
 
 use SWP\TemplateEngineBundle\Twig\Node\GimmeNode;
 
-class Twig_Node_GimmeNodeTest extends \Twig_Test_NodeTestCase
+class GimmeNodeTest extends \Twig_Test_NodeTestCase
 {
     public function testConstructor()
     {

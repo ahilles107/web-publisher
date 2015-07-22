@@ -99,7 +99,7 @@ class Meta
      */
     private function getExposedProperties(array $values = array())
     {
-        if (count($values) === 0) {
+        if (count($values) === 0 && is_array($this->values)) {
             $values = $this->values;
         }
 
