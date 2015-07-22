@@ -18,10 +18,18 @@ class ArticleLoader implements LoaderInterface
     {
         return new Meta(__APP_DIR__ . '/Resources/meta/article.yml', array(
             'title' => 'New article',
-            'keywords' => 'lorem, ipsum, dolor, sit, amet'
+            'keywords' => 'lorem, ipsum, dolor, sit, amet',
+            'don\'t expose it' => 'this should be not exposed',
         ));
     }
 
+    /**
+     * Checks if Loader supports provided type
+     *
+     * @param string $type
+     *
+     * @return boolean
+     */
     public function isSupported($type)
     {
         return $type === 'article' ? true : false;

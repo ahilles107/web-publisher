@@ -40,9 +40,7 @@ class GimmeNode extends \Twig_Node
                 $compiler->raw(");\n")
             ->write("if (\$swpMeta".$i." !== false) {\n")
             ->indent()
-                ->write("\$context[")->subcompile($this->getNode('annotation'))->raw("] = \$swpMeta".$i.";")
-                ->subcompile($this->getNode('body'))
-                ->write("\n")
+                ->write("\$context[")->subcompile($this->getNode('annotation'))->raw("] = \$swpMeta".$i.";")->subcompile($this->getNode('body'))
             ->outdent()
             ->write("}\n")
         ;

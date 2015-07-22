@@ -40,6 +40,13 @@ class ChainLoader implements LoaderInterface
         return false;
     }
 
+    /**
+     * Checks if Loader supports provided type
+     *
+     * @param string $type
+     *
+     * @return boolean
+     */
     public function isSupported($type)
     {
         foreach ($this->loaders as $loader) {
