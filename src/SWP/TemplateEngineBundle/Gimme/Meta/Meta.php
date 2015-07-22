@@ -28,7 +28,7 @@ class Meta
      */
     public function __construct($configuration, $values)
     {
-        if (!is_readable($configuration)){
+        if (!is_readable($configuration)) {
             throw new \InvalidArgumentException("Configuration file is not readable for parser");
         }
 
@@ -69,7 +69,7 @@ class Meta
      *
      * @param string $values
      *
-     * @return array
+     * @return bool
      */
     private function fillFromJson($values)
     {

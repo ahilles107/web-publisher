@@ -16,7 +16,7 @@ class ArticleLoader implements LoaderInterface
      */
     public function load($type, $parameters)
     {
-        return new Meta(__APP_DIR__ . '/Resources/meta/article.yml', array(
+        return new Meta(__APP_DIR__.'/Resources/meta/article.yml', array(
             'title' => 'New article',
             'keywords' => 'lorem, ipsum, dolor, sit, amet',
             'don\'t expose it' => 'this should be not exposed',
