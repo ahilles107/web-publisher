@@ -30,17 +30,17 @@ class GimmeExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('start', function ($context, $node, $value) {
+            new \Twig_SimpleFilter('start', function($context, $node, $value) {
                 $node['_collection_type_filters']['start'] = $value;
 
                 return $node;
             }, array('needs_context' => true)),
-            new \Twig_SimpleFilter('limit', function ($context, $node, $value) {
+            new \Twig_SimpleFilter('limit', function($context, $node, $value) {
                 $node['_collection_type_filters']['limit'] = $value;
 
                 return $node;
             }, array('needs_context' => true)),
-            new \Twig_SimpleFilter('order', function ($context, $node, $value1, $value2) {
+            new \Twig_SimpleFilter('order', function($context, $node, $value1, $value2) {
                 $node['_collection_type_filters']['order'] = [$value1, $value2];
 
                 return $node;
