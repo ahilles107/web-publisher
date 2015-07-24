@@ -7,8 +7,6 @@ use Prophecy\Argument;
 use SWP\TemplateEngineBundle\Gimme\Loader\ArticleLoader;
 use SWP\TemplateEngineBundle\Gimme\Meta\Meta;
 
-define('__APP_DIR__', __DIR__ . '/../../../../../app');
-
 class ChainLoaderSpec extends ObjectBehavior
 {
     function let(
@@ -17,7 +15,7 @@ class ChainLoaderSpec extends ObjectBehavior
     ){
         $articleLoader->isSupported(Argument::exact('article'))->willReturn(true);
         $articleLoader->isSupported(Argument::exact('article2'))->willReturn(false);
-        $articleLoader->load(Argument::exact('article'), Argument::type('array'))->willReturn($meta);
+        $articleLoader->load(Argument::exact('article'), Argument::type('array'), \SWP\TemplateEngineBundle\Gimme\Loader\LoaderInterface::SINGLE)->willReturn($meta);
 
     }
 

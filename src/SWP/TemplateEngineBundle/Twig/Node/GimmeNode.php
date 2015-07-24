@@ -7,7 +7,7 @@ namespace SWP\TemplateEngineBundle\Twig\Node;
  */
 class GimmeNode extends \Twig_Node
 {
-    private static $cacheCount = 1;
+    private static $count = 1;
 
     /**
      * @param \Twig_Node_Expression $annotation
@@ -26,7 +26,7 @@ class GimmeNode extends \Twig_Node
      */
     public function compile(\Twig_Compiler $compiler)
     {
-        $i = self::$cacheCount++;
+        $i = self::$count++;
 
         $compiler
             ->addDebugInfo($this)

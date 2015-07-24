@@ -7,15 +7,18 @@ namespace SWP\TemplateEngineBundle\Gimme\Loader;
  */
 interface LoaderInterface
 {
+    const SINGLE = 0;
+    const COLLECTION = 1;
+
     /**
      * Loads a Meta class from given datasource.
      *
-     * @param string $type       object type
+     * @param string $metaType       object type
      * @param array  $parameters parameters needed to load required object type
      *
      * @return Meta|bool false if meta cannot be loaded, a Meta instance otherwise
      */
-    public function load($type, $parameters);
+    public function load($metaTtype, $parameters, $responseType);
 
     /**
      * Check if loader support required type

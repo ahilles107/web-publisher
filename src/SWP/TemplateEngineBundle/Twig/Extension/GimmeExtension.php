@@ -3,6 +3,7 @@
 namespace SWP\TemplateEngineBundle\Twig\Extension;
 
 use SWP\TemplateEngineBundle\Twig\TokenParser\GimmeTokenParser;
+use SWP\TemplateEngineBundle\Twig\TokenParser\GimmeListTokenParser;
 
 class GimmeExtension extends \Twig_Extension
 {
@@ -22,6 +23,28 @@ class GimmeExtension extends \Twig_Extension
     {
         return array(
             new GimmeTokenParser(),
+            new GimmeListTokenParser(),
+        );
+    }
+
+    public function getFilters()
+    {
+        return array(
+            new \Twig_SimpleFilter('start', function ($context, $node, $value) {
+                $node['_collection_type_filters']['start'] = $value;
+
+                return $node;
+            }, array('needs_context' => true)),
+            new \Twig_SimpleFilter('limit', function ($context, $node, $value) {
+                $node['_collection_type_filters']['limit'] = $value;
+
+                return $node;
+            }, array('needs_context' => true)),
+            new \Twig_SimpleFilter('order', function ($context, $node, $value1, $value2) {
+                $node['_collection_type_filters']['order'] = [$value1, $value2];
+
+                return $node;
+            }, array('needs_context' => true)),
         );
     }
 

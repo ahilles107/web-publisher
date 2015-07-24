@@ -3,8 +3,6 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-define('__APP_DIR__', __DIR__);
-
 class AppKernel extends Kernel
 {
     public function registerBundles()

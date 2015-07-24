@@ -24,14 +24,15 @@ class ChainLoader implements LoaderInterface
      *
      * @param string $type       object type
      * @param array  $parameters parameters needed to load required object type
+     * @param int    $responseType response type: single meta (LoaderInterface::SINGLE) or collection of metas (LoaderInterface::COLLECTION)
      *
      * @return Meta|bool false if meta cannot be loaded, a Meta instance otherwise
      */
-    public function load($type, $parameters)
+    public function load($type, $parameters, $responseType = LoaderInterface::SINGLE)
     {
         foreach ($this->loaders as $loader) {
             if ($loader->isSupported($type)) {
-                if (false !== $meta = $loader->load($type, $parameters)) {
+                if (false !== $meta = $loader->load($type, $parameters, $responseType)) {
                     return $meta;
                 }
             }
