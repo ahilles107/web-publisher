@@ -18,7 +18,7 @@ interface LoaderInterface
      *
      * @return Meta|bool false if meta cannot be loaded, a Meta instance otherwise
      */
-    public function load($metaTtype, $parameters, $responseType);
+    public function load($metaType, $parameters, $responseType);
 
     /**
      * Check if loader support required type

@@ -41,7 +41,7 @@ class GimmeListTokenParser extends \Twig_TokenParser
         $stream = $this->parser->getStream();
 
         $variable = $this->parser->getExpressionParser()->parseAssignmentExpression();
-        $from = $this->parser->getExpressionParser()->parseExpression();
+        $stream->expect(\Twig_Token::NAME_TYPE, 'from');
         $collectionType = $this->parser->getExpressionParser()->parseAssignmentExpression();
 
         $collectionFilters = null;

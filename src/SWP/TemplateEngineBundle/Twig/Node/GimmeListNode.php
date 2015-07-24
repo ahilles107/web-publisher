@@ -135,7 +135,5 @@ class GimmeListNode extends \Twig_Node
 
         // keep the values set in the inner context for variables defined in the outer context
         $compiler->write("\$context = array_intersect_key(\$context, \$_parent) + \$_parent;\n");
-
-        //dump($compiler);die;
     }
 }
