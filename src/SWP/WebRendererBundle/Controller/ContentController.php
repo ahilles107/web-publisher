@@ -16,10 +16,11 @@ namespace SWP\WebRendererBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ContentController extends Controller
 {
-    public function renderAction()
+    public function renderContentPageAction()
     {
         $context = $this->container->get('context');
         $metaLoader = $this->container->get('swp_template_engine_loader_chain');
@@ -28,6 +29,22 @@ class ContentController extends Controller
         $article = $metaLoader->load('article', ['contentPath' => $currentPage['contentPath']]);
         if ($article) {
             $context->registerMeta('article', $article);
+        }
+
+        return $this->render('views/'.$currentPage['templateName']);
+    }
+
+    public function renderContainerPageAction($contentSlug)
+    {
+        $context = $this->container->get('context');
+        $metaLoader = $this->container->get('swp_template_engine_loader_chain');
+        $currentPage = $context->getCurrentPage();
+        dump($currentPage, $contentSlug);die;
+        $article = $metaLoader->load('article', ['slug' => $contentSlug]);
+        if ($article) {
+            $context->registerMeta('article', $article);
+        } else {
+            return new NotFoundHttpException('Not Found');
         }
 
         return $this->render('views/'.$currentPage['templateName']);

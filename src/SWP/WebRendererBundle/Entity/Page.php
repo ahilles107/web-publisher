@@ -14,6 +14,9 @@
 
 namespace SWP\WebRendererBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use SWP\WebRendererBundle\Entity\PageContent;
+
 /**
  * Page
  */
@@ -61,8 +64,12 @@ class Page
     /**
      * @var array
      */
-    private $articles;
+    private $contents;
 
+    public function __construct()
+    {
+        $this->contents = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -105,7 +112,7 @@ class Page
      *
      * @return Page
      */
-    public function setType($type = self::PAGE_TYPE_EEXTERNAL_URL)
+    public function setType($type = self::PAGE_TYPE_EXTERNAL_URL)
     {
         $this->type = $type;
 
@@ -219,27 +226,27 @@ class Page
     }
 
     /**
-     * Set articles
+     * Add contents
      *
-     * @param array $articles
+     * @param PageContent $content
      *
      * @return Page
      */
-    public function setArticles($articles)
+    public function addContent(PageContent $content)
     {
-        $this->articles = $articles;
+        $this->contents->add($content);
 
         return $this;
     }
 
     /**
-     * Get articles
+     * Get contents
      *
-     * @return array
+     * @return ArrayCollection
      */
-    public function getArticles()
+    public function getContents()
     {
-        return $this->articles;
+        return $this->contents;
     }
 }
 

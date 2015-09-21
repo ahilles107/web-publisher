@@ -31,7 +31,8 @@ SWP\WebRendererBundle\Entity\Page:
             length: 255
             column: content_path
             nullable: true
-        articles:
-            type: array
-            nullable: true
+    oneToMany:
+        contents:
+            targetEntity: SWP\WebRendererBundle\Entity\PageContent
+            mappedBy: page
     lifecycleCallbacks: {  }

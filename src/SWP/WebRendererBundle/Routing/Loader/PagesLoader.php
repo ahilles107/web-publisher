@@ -18,6 +18,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Config\Loader\Loader;
+use SWP\WebRendererBundle\Entity\Page;
 
 /**
  * Pages Loader loads routes from a Pages entries.
@@ -53,13 +54,27 @@ class PagesLoader extends Loader
     {
         $collection = new RouteCollection();
 
-        $pages = $this->em->createQuery('SELECT partial p.{id, templateName, slug, name} FROM \SWP\WebRendererBundle\Entity\Page p')->execute();
+        $pages = $this->em->createQuery('SELECT partial p.{id, templateName, slug, name, type} FROM \SWP\WebRendererBundle\Entity\Page p')->execute();
         foreach ($pages as $page) {
-            $collection->add('swp_page_'.strtolower(str_replace(' ', '_', $page->getName())), new Route($page->getSlug(), array(
-                '_controller' => '\SWP\WebRendererBundle\Controller\ContentController::renderAction',
-                'page_id' => $page->getId(),
-                'template' => $page->getTemplateName()
-            )));
+            if ($page->getType() === Page::PAGE_TYPE_CONTENT) {
+                $collection->add(
+                    'swp_page_'.strtolower(str_replace(' ', '_', $page->getName())),
+                    new Route($page->getSlug(), array(
+                        '_controller' => '\SWP\WebRendererBundle\Controller\ContentController::renderContentPageAction',
+                        'page_id' => $page->getId(),
+                        'template' => $page->getTemplateName()
+                    ))
+                );
+            } else if ($page->getType() === Page::PAGE_TYPE_CONTAINER) {
+                $collection->add(
+                    'swp_page_'.strtolower(str_replace(' ', '_', $page->getName())),
+                    new Route($page->getSlug() . '/{contentSlug}', array(
+                        '_controller' => '\SWP\WebRendererBundle\Controller\ContentController::renderContainerPageAction',
+                        'page_id' => $page->getId(),
+                        'template' => $page->getTemplateName()
+                    ))
+                );
+            }
         }
 
         return $collection;

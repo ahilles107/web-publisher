@@ -14,15 +14,20 @@
 
 namespace SWP\ContentBundle\Document;
 
+use Behat\Transliterator\Transliterator;
+
 class Article
 {
     protected $id;
+
     protected $title;
+
+    protected $slug;
 
     /**
      * Gets the value of id.
      *
-     * @return mixed
+     * @return integer
      */
     public function getId()
     {
@@ -32,7 +37,7 @@ class Article
     /**
      * Gets the value of title.
      *
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -42,13 +47,39 @@ class Article
     /**
      * Sets the value of title.
      *
-     * @param mixed $title the title
+     * @param string $title the title
      *
      * @return self
      */
     public function setTitle($title)
     {
         $this->title = $title;
+
+        $this->slug = Transliterator::urlize($this->title);
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of slug.
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Sets the value of slug.
+     *
+     * @param string $slug the slug
+     *
+     * @return self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

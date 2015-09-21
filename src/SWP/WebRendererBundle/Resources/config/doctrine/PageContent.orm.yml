@@ -1,0 +1,22 @@
+SWP\WebRendererBundle\Entity\PageContent:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        contentPath:
+            column: content_path
+            type: string
+            nullable: true
+    manyToOne:
+        page:
+            targetEntity: SWP\WebRendererBundle\Entity\Page
+            inversedBy: contents
+            joinColumn:
+                name: page_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }
