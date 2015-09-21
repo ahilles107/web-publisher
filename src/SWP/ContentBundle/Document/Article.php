@@ -11,7 +11,6 @@
  * @copyright 2015 Sourcefabric z.ú.
  * @license http://www.superdesk.org/license
  */
-
 namespace SWP\ContentBundle\Document;
 
 use Behat\Transliterator\Transliterator;
@@ -21,6 +20,7 @@ class Article
     protected $id;
 
     protected $title;
+    protected $content;
 
     protected $slug;
 
@@ -80,6 +80,30 @@ class Article
     public function setSlug($slug)
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of content.
+     *
+     * @return mixed
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Sets the value of content.
+     *
+     * @param mixed $content the content
+     *
+     * @return self
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
 
         return $this;
     }
