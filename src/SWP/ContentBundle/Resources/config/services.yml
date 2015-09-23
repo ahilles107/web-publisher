@@ -12,6 +12,7 @@ services:
         arguments:
             - %kernel.root_dir%
             - @doctrine_phpcr.odm.document_manager
+            - @doctrine.orm.entity_manager
         tags:
             - { name: swp.meta_loader }
 

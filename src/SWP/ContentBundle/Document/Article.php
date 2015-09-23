@@ -20,6 +20,7 @@ class Article
     protected $id;
 
     protected $title;
+
     protected $content;
 
     protected $slug;

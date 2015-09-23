@@ -1,6 +1,7 @@
 SWP\WebRendererBundle\Entity\PageContent:
     type: entity
     table: null
+    repositoryClass: SWP\WebRendererBundle\Entity\PageContentRepository
     id:
         id:
             type: integer

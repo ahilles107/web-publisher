@@ -37,7 +37,8 @@ class ContentController extends Controller
         $context = $this->container->get('context');
         $metaLoader = $this->container->get('swp_template_engine_loader_chain');
         $currentPage = $context->getCurrentPage();
-        dump($currentPage, $contentSlug);die;
+
+
         $article = $metaLoader->load('article', ['slug' => $contentSlug]);
         if ($article) {
             $context->registerMeta('article', $article);

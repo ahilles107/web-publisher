@@ -30,13 +30,16 @@ class ArticleLoader implements LoaderInterface
      */
     protected $dm;
 
+    protected $em;
+
     /**
      * @param string $rootDir path to application root directory
      */
-    public function __construct($rootDir, DocumentManager $dm)
+    public function __construct($rootDir, DocumentManager $dm, $em)
     {
         $this->rootDir = $rootDir;
         $this->dm = $dm;
+        $this->em = $em;
     }
 
     /**
@@ -45,7 +48,8 @@ class ArticleLoader implements LoaderInterface
      * @MetaLoaderDoc(
      *     description="Article Loader loads articles from Content Repository",
      *     parameters={
-     *         contentPath="SINGLE|required content path"
+     *         contentPath="SINGLE|required content path",
+     *         slug="SINGLE|required content slug"
      *     }
      * )
      *
@@ -58,9 +62,36 @@ class ArticleLoader implements LoaderInterface
     public function load($type, $parameters, $responseType = LoaderInterface::SINGLE)
     {
         if ($responseType === LoaderInterface::SINGLE) {
-            $article = $this->dm->find('SWP\ContentBundle\Document\Article', $parameters['contentPath']);
+            if (array_key_exists('contentPath', $parameters)) {
+                $article = $this->dm->find('SWP\ContentBundle\Document\Article', $parameters['contentPath']);
+            } else if (array_key_exists('slug', $parameters)) {
+                $article = $this->dm->getRepository('SWP\ContentBundle\Document\Article')
+                    ->findOneBy(array('slug' => $parameters['slug']));
+            }
+
             if ($article) {
                 return new Meta($this->rootDir.'/Resources/meta/article.yml', $article);
+            }
+        } elseif ($responseType === LoaderInterface::COLLECTION) {
+            if (array_key_exists('pageName', $parameters)) {
+                $page = $this->em->getRepository('SWP\WebRendererBundle\Entity\Page')->getByName($parameters['pageName'])
+                    ->getOneOrNullResult();
+
+                if ($page) {
+                    $articlePages = $this->em->getRepository('SWP\WebRendererBundle\Entity\PageContent')
+                        ->getForPage($page)
+                        ->getResult();
+
+                    $articles = [];
+                    foreach($articlePages as $articlePage) {
+                        $articles[] = new Meta(
+                            $this->rootDir.'/Resources/meta/article.yml',
+                            $this->dm->find('SWP\ContentBundle\Document\Article', $articlePage->getContentPath())
+                        );
+                    }
+
+                    return $articles;
+                }
             }
         }
 

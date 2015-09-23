@@ -19,6 +19,7 @@ use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Config\Loader\Loader;
 use SWP\WebRendererBundle\Entity\Page;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 
 /**
  * Pages Loader loads routes from a Pages entries.
@@ -38,9 +39,9 @@ class PagesLoader extends Loader
     /**
      * Constructor.
      *
-     * @param \Symfony\Bridge\Doctrine\ManagerRegistry$managerRegistry
+     * @param \Symfony\Bridge\Doctrine\Registry $managerRegistry
      */
-    public function __construct(\Doctrine\Bundle\DoctrineBundle\Registry $managerRegistry)
+    public function __construct(Registry $managerRegistry)
     {
         $this->em = $managerRegistry->getManager();
     }

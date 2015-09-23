@@ -22,16 +22,74 @@ class PageContent
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $page;
+    protected $page;
 
     /**
      * @var string
      */
-    private $contentPath;
+    protected $contentPath;
+
+    /**
+     * Gets the value of id.
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Gets the value of page.
+     *
+     * @return string
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * Sets the value of page.
+     *
+     * @param string $page the page
+     *
+     * @return self
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of contentPath.
+     *
+     * @return string
+     */
+    public function getContentPath()
+    {
+        return $this->contentPath;
+    }
+
+    /**
+     * Sets the value of contentPath.
+     *
+     * @param string $contentPath the content path
+     *
+     * @return self
+     */
+    public function setContentPath($contentPath)
+    {
+        $this->contentPath = $contentPath;
+
+        return $this;
+    }
 }
 

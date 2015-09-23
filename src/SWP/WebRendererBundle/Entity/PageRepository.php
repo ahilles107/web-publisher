@@ -36,4 +36,22 @@ class PageRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery();
     }
+
+    /**
+     * Get Query for Page searched by name
+     *
+     * @param string $pageName
+     *
+     * @return \Doctrine\ORM\Query
+     */
+    public function getByName($pageName)
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.name = :pageName')
+            ->setParameters([
+                'pageName' => $pageName,
+            ]);
+
+        return $qb->getQuery();
+    }
 }
