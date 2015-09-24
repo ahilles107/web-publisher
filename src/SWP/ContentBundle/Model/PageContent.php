@@ -15,12 +15,12 @@
 namespace SWP\ContentBundle\Model;
 
 /**
- * Page Content
+ * Page Content.
  */
 class PageContent
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -37,7 +37,7 @@ class PageContent
     /**
      * Gets the value of id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -92,4 +92,3 @@ class PageContent
         return $this;
     }
 }
-
