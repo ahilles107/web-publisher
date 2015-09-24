@@ -17,12 +17,12 @@ namespace SWP\ContentBundle\Repository;
 use SWP\ContentBundle\Model\Page;
 
 /**
- * PageRepository
+ * PageRepository.
  */
 class PageContentRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * Get Query for Page searched by page
+     * Get Query for Page searched by page.
      *
      * @param Page $page
      *
@@ -40,7 +40,7 @@ class PageContentRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * Get Query for Page searched by contentPath
+     * Get Query for Page searched by contentPath.
      *
      * @param string $contentPath
      *

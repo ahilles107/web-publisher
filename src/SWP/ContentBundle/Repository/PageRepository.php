@@ -38,7 +38,7 @@ class PageRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * Get Query for Page searched by name
+     * Get Query for Page searched by name.
      *
      * @param string $pageName
      *

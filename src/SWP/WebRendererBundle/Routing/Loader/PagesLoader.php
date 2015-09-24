@@ -62,16 +62,16 @@ class PagesLoader extends Loader
                     new Route($page->getSlug(), array(
                         '_controller' => '\SWP\WebRendererBundle\Controller\ContentController::renderContentPageAction',
                         'page_id' => $page->getId(),
-                        'template' => $page->getTemplateName()
+                        'template' => $page->getTemplateName(),
                     ))
                 );
-            } else if ($page->getType() === Page::PAGE_TYPE_CONTAINER) {
+            } elseif ($page->getType() === Page::PAGE_TYPE_CONTAINER) {
                 $collection->add(
                     $page->getRouteName(),
-                    new Route($page->getSlug() . '/{contentSlug}', array(
+                    new Route($page->getSlug().'/{contentSlug}', array(
                         '_controller' => '\SWP\WebRendererBundle\Controller\ContentController::renderContainerPageAction',
                         'page_id' => $page->getId(),
-                        'template' => $page->getTemplateName()
+                        'template' => $page->getTemplateName(),
                     ))
                 );
             }
