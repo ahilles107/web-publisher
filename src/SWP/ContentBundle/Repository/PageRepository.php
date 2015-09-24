@@ -15,12 +15,12 @@
 namespace SWP\ContentBundle\Repository;
 
 /**
- * PageRepository
+ * PageRepository.
  */
 class PageRepository extends \Doctrine\ORM\EntityRepository
 {
     /**
-     * Get Query for Page searched by id
+     * Get Query for Page searched by id.
      *
      * @param int $pageId
      *

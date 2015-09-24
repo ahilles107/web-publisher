@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use SWP\ContentBundle\Model\PageContent;
 
 /**
- * Page
+ * Page.
  */
 class Page
 {
@@ -27,7 +27,7 @@ class Page
     const PAGE_TYPE_CONTAINER = 2;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
@@ -37,7 +37,7 @@ class Page
     protected $name;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $type;
 
@@ -66,6 +66,7 @@ class Page
      */
     protected $contents;
 
+<<<<<<< HEAD:src/SWP/ContentBundle/Model/Page.php
     /**
      * @var Page
      */
@@ -77,10 +78,12 @@ class Page
         $this->contents = new ArrayCollection();
     }
 
+=======
+>>>>>>> 2eff2eda431a021f93565ca2c8ebe2f5580b43d0:src/SWP/WebRendererBundle/Entity/Page.php
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -88,7 +91,7 @@ class Page
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -102,7 +105,7 @@ class Page
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -112,9 +115,9 @@ class Page
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
      *
      * @return Page
      */
@@ -126,9 +129,9 @@ class Page
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer
+     * @return int
      */
     public function getType()
     {
@@ -136,7 +139,7 @@ class Page
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -150,7 +153,7 @@ class Page
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -164,7 +167,7 @@ class Page
     }
 
     /**
-     * Set templateName
+     * Set templateName.
      *
      * @param string $templateName
      *
@@ -178,7 +181,7 @@ class Page
     }
 
     /**
-     * Get templateName
+     * Get templateName.
      *
      * @return string
      */
@@ -188,7 +191,7 @@ class Page
     }
 
     /**
-     * Set externalUrl
+     * Set externalUrl.
      *
      * @param string $externalUrl
      *
@@ -202,7 +205,7 @@ class Page
     }
 
     /**
-     * Get externalUrl
+     * Get externalUrl.
      *
      * @return string
      */
@@ -212,7 +215,7 @@ class Page
     }
 
     /**
-     * Set contentPath
+     * Set contentPath.
      *
      * @param string $contentPath
      *
@@ -226,7 +229,7 @@ class Page
     }
 
     /**
-     * Get contentPath
+     * Get contentPath.
      *
      * @return string
      */
@@ -236,7 +239,11 @@ class Page
     }
 
     /**
+<<<<<<< HEAD:src/SWP/ContentBundle/Model/Page.php
      * Add contents
+=======
+     * Set articles.
+>>>>>>> 2eff2eda431a021f93565ca2c8ebe2f5580b43d0:src/SWP/WebRendererBundle/Entity/Page.php
      *
      * @param PageContent $content
      *
@@ -250,6 +257,7 @@ class Page
     }
 
     /**
+<<<<<<< HEAD:src/SWP/ContentBundle/Model/Page.php
      * Get contents
      *
      * @return ArrayCollection
@@ -271,6 +279,9 @@ class Page
 
     /**
      * Gets the value of parent.
+=======
+     * Get articles.
+>>>>>>> 2eff2eda431a021f93565ca2c8ebe2f5580b43d0:src/SWP/WebRendererBundle/Entity/Page.php
      *
      * @return Page
      */
@@ -302,4 +313,3 @@ class Page
         return false;
     }
 }
-
