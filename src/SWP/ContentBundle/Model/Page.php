@@ -66,7 +66,6 @@ class Page
      */
     protected $contents;
 
-<<<<<<< HEAD:src/SWP/ContentBundle/Model/Page.php
     /**
      * @var Page
      */
@@ -78,8 +77,6 @@ class Page
         $this->contents = new ArrayCollection();
     }
 
-=======
->>>>>>> 2eff2eda431a021f93565ca2c8ebe2f5580b43d0:src/SWP/WebRendererBundle/Entity/Page.php
     /**
      * Get id.
      *
@@ -239,11 +236,7 @@ class Page
     }
 
     /**
-<<<<<<< HEAD:src/SWP/ContentBundle/Model/Page.php
      * Add contents
-=======
-     * Set articles.
->>>>>>> 2eff2eda431a021f93565ca2c8ebe2f5580b43d0:src/SWP/WebRendererBundle/Entity/Page.php
      *
      * @param PageContent $content
      *
@@ -257,7 +250,6 @@ class Page
     }
 
     /**
-<<<<<<< HEAD:src/SWP/ContentBundle/Model/Page.php
      * Get contents
      *
      * @return ArrayCollection
@@ -279,9 +271,6 @@ class Page
 
     /**
      * Gets the value of parent.
-=======
-     * Get articles.
->>>>>>> 2eff2eda431a021f93565ca2c8ebe2f5580b43d0:src/SWP/WebRendererBundle/Entity/Page.php
      *
      * @return Page
      */
