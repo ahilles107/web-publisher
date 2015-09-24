@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Superdesk Web Publisher Web Renderer Bundle
+ * This file is part of the Superdesk Web Publisher Content Bundle.
  *
  * Copyright 2015 Sourcefabric z.u. and contributors.
  *
@@ -12,10 +12,10 @@
  * @license http://www.superdesk.org/license
  */
 
-namespace SWP\WebRendererBundle\Entity;
+namespace SWP\ContentBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use SWP\WebRendererBundle\Entity\PageContent;
+use SWP\ContentBundle\Model\PageContent;
 
 /**
  * Page
@@ -29,42 +29,48 @@ class Page
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * @var integer
      */
-    private $type;
+    protected $type;
 
     /**
      * @var string
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var string
      */
-    private $templateName;
+    protected $templateName;
 
     /**
      * @var string
      */
-    private $externalUrl;
+    protected $externalUrl;
 
     /**
      * @var string
      */
-    private $contentPath;
+    protected $contentPath;
 
     /**
      * @var array
      */
-    private $contents;
+    protected $contents;
+
+    /**
+     * @var Page
+     */
+    protected $parent;
+
 
     public function __construct()
     {
@@ -150,6 +156,10 @@ class Page
      */
     public function getSlug()
     {
+        if ($this->getParent()) {
+            return $this->getParent()->getSlug().'/'.$this->slug;
+        }
+
         return $this->slug;
     }
 
@@ -247,6 +257,49 @@ class Page
     public function getContents()
     {
         return $this->contents;
+    }
+
+    /**
+     * Get route name
+     *
+     * @return string route name for page
+     */
+    public function getRouteName()
+    {
+        return 'swp_page_'.strtolower(str_replace(' ', '_', $this->getName()));
+    }
+
+    /**
+     * Gets the value of parent.
+     *
+     * @return Page
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Sets the value of parent.
+     *
+     * @param Page $parent the parent
+     *
+     * @return self
+     */
+    protected function setParent(Page $parent)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function hasParent()
+    {
+        if ($this->parent !== null) {
+            return true;
+        }
+
+        return false;
     }
 }
 

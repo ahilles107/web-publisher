@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the Superdesk Web Publisher Web Renderer Bundle
+ * This file is part of the Superdesk Web Publisher Content Bundle.
  *
  * Copyright 2015 Sourcefabric z.u. and contributors.
  *
@@ -12,9 +12,9 @@
  * @license http://www.superdesk.org/license
  */
 
-namespace SWP\WebRendererBundle\Entity;
+namespace SWP\ContentBundle\Repository;
 
-use SWP\WebRendererBundle\Entity\Page;
+use SWP\ContentBundle\Model\Page;
 
 /**
  * PageRepository
@@ -34,6 +34,24 @@ class PageContentRepository extends \Doctrine\ORM\EntityRepository
             ->where('pa.page = :page')
             ->setParameters([
                 'page' => $page,
+            ]);
+
+        return $qb->getQuery();
+    }
+
+    /**
+     * Get Query for Page searched by contentPath
+     *
+     * @param string $contentPath
+     *
+     * @return \Doctrine\ORM\Query
+     */
+    public function getForContentPath($contentPath)
+    {
+        $qb = $this->createQueryBuilder('pa')
+            ->where('pa.contentPath = :contentPath')
+            ->setParameters([
+                'contentPath' => $contentPath,
             ]);
 
         return $qb->getQuery();

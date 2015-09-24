@@ -49,7 +49,8 @@ class ArticleLoader implements LoaderInterface
      *     description="Article Loader loads articles from Content Repository",
      *     parameters={
      *         contentPath="SINGLE|required content path",
-     *         slug="SINGLE|required content slug"
+     *         slug="SINGLE|required content slug",
+     *         pageName="COLLECTiON|name of Page for required articles"
      *     }
      * )
      *
@@ -61,6 +62,10 @@ class ArticleLoader implements LoaderInterface
      */
     public function load($type, $parameters, $responseType = LoaderInterface::SINGLE)
     {
+        if (!$parameters) {
+            $parameters = [];
+        }
+
         if ($responseType === LoaderInterface::SINGLE) {
             if (array_key_exists('contentPath', $parameters)) {
                 $article = $this->dm->find('SWP\ContentBundle\Document\Article', $parameters['contentPath']);
@@ -74,11 +79,11 @@ class ArticleLoader implements LoaderInterface
             }
         } elseif ($responseType === LoaderInterface::COLLECTION) {
             if (array_key_exists('pageName', $parameters)) {
-                $page = $this->em->getRepository('SWP\WebRendererBundle\Entity\Page')->getByName($parameters['pageName'])
+                $page = $this->em->getRepository('SWP\ContentBundle\Model\Page')->getByName($parameters['pageName'])
                     ->getOneOrNullResult();
 
                 if ($page) {
-                    $articlePages = $this->em->getRepository('SWP\WebRendererBundle\Entity\PageContent')
+                    $articlePages = $this->em->getRepository('SWP\ContentBundle\Model\PageContent')
                         ->getForPage($page)
                         ->getResult();
 

@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Config\Loader\Loader;
-use SWP\WebRendererBundle\Entity\Page;
+use SWP\ContentBundle\Model\Page;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 
 /**
@@ -55,11 +55,11 @@ class PagesLoader extends Loader
     {
         $collection = new RouteCollection();
 
-        $pages = $this->em->createQuery('SELECT partial p.{id, templateName, slug, name, type} FROM \SWP\WebRendererBundle\Entity\Page p')->execute();
+        $pages = $this->em->createQuery('SELECT partial p.{id, templateName, slug, name, type, parent} FROM \SWP\ContentBundle\Model\Page p')->execute();
         foreach ($pages as $page) {
             if ($page->getType() === Page::PAGE_TYPE_CONTENT) {
                 $collection->add(
-                    'swp_page_'.strtolower(str_replace(' ', '_', $page->getName())),
+                    $page->getRouteName(),
                     new Route($page->getSlug(), array(
                         '_controller' => '\SWP\WebRendererBundle\Controller\ContentController::renderContentPageAction',
                         'page_id' => $page->getId(),
@@ -68,7 +68,7 @@ class PagesLoader extends Loader
                 );
             } else if ($page->getType() === Page::PAGE_TYPE_CONTAINER) {
                 $collection->add(
-                    'swp_page_'.strtolower(str_replace(' ', '_', $page->getName())),
+                    $page->getRouteName(),
                     new Route($page->getSlug() . '/{contentSlug}', array(
                         '_controller' => '\SWP\WebRendererBundle\Controller\ContentController::renderContainerPageAction',
                         'page_id' => $page->getId(),

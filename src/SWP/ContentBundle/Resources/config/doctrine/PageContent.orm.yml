@@ -1,7 +1,7 @@
-SWP\WebRendererBundle\Entity\PageContent:
+SWP\ContentBundle\Model\PageContent:
     type: entity
     table: null
-    repositoryClass: SWP\WebRendererBundle\Entity\PageContentRepository
+    repositoryClass: SWP\ContentBundle\Repository\PageContentRepository
     id:
         id:
             type: integer
@@ -15,9 +15,9 @@ SWP\WebRendererBundle\Entity\PageContent:
             nullable: true
     manyToOne:
         page:
-            targetEntity: SWP\WebRendererBundle\Entity\Page
+            targetEntity: SWP\ContentBundle\Model\Page
             inversedBy: contents
             joinColumn:
                 name: page_id
                 referencedColumnName: id
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: {}
