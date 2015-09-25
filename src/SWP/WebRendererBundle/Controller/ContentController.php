@@ -15,12 +15,11 @@
 namespace SWP\WebRendererBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ContentController extends Controller
 {
     /**
-     * Render content Page
+     * Render content Page.
      */
     public function renderContentPageAction()
     {
@@ -28,7 +27,7 @@ class ContentController extends Controller
     }
 
     /**
-     * Render container Page
+     * Render container Page.
      *
      * @param string $contentSlug
      */
@@ -38,7 +37,7 @@ class ContentController extends Controller
     }
 
     /**
-     * Render Page
+     * Render Page.
      *
      * @param string $type
      * @param array  $parameters
@@ -51,7 +50,7 @@ class ContentController extends Controller
 
         if ($type == 'content') {
             $article = $metaLoader->load('article', ['contentPath' => $currentPage['contentPath']]);
-        } else if ($type == 'container') {
+        } elseif ($type == 'container') {
             $article = $metaLoader->load('article', $parameters);
         }
 
