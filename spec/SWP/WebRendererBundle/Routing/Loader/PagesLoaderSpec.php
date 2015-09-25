@@ -5,7 +5,6 @@ namespace spec\SWP\WebRendererBundle\Routing\Loader;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use SWP\ContentBundle\Model\Page;
-use Symfony\Component\Routing\RouteCollection;
 
 class PagesLoaderSpec extends ObjectBehavior
 {

@@ -15,7 +15,6 @@
 namespace SWP\ContentBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use SWP\ContentBundle\Model\PageContent;
 
 /**
  * Page.
@@ -70,7 +69,6 @@ class Page
      * @var Page
      */
     protected $parent;
-
 
     public function __construct()
     {
@@ -236,7 +234,7 @@ class Page
     }
 
     /**
-     * Add contents
+     * Add contents.
      *
      * @param PageContent $content
      *
@@ -250,7 +248,7 @@ class Page
     }
 
     /**
-     * Get contents
+     * Get contents.
      *
      * @return ArrayCollection
      */
@@ -260,7 +258,7 @@ class Page
     }
 
     /**
-     * Get route name
+     * Get route name.
      *
      * @return string route name for page
      */

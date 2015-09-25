@@ -69,7 +69,7 @@ class ArticleLoader implements LoaderInterface
         if ($responseType === LoaderInterface::SINGLE) {
             if (array_key_exists('contentPath', $parameters)) {
                 $article = $this->dm->find('SWP\ContentBundle\Document\Article', $parameters['contentPath']);
-            } else if (array_key_exists('slug', $parameters)) {
+            } elseif (array_key_exists('slug', $parameters)) {
                 $article = $this->dm->getRepository('SWP\ContentBundle\Document\Article')
                     ->findOneBy(array('slug' => $parameters['slug']));
             }
@@ -88,7 +88,7 @@ class ArticleLoader implements LoaderInterface
                         ->getResult();
 
                     $articles = [];
-                    foreach($articlePages as $articlePage) {
+                    foreach ($articlePages as $articlePage) {
                         $articles[] = new Meta(
                             $this->rootDir.'/Resources/meta/article.yml',
                             $this->dm->find('SWP\ContentBundle\Document\Article', $articlePage->getContentPath())
