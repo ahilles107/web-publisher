@@ -62,7 +62,7 @@ class ArticleLoader implements LoaderInterface
      */
     public function load($type, $parameters, $responseType = LoaderInterface::SINGLE)
     {
-        if (!$parameters) {
+        if (empty($parameters)) {
             $parameters = [];
         }
 

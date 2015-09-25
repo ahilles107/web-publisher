@@ -62,7 +62,7 @@ class Page
     protected $contentPath;
 
     /**
-     * @var array
+     * @var ArrayCollection
      */
     protected $contents;
 

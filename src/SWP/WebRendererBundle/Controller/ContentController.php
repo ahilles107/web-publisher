@@ -19,32 +19,44 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ContentController extends Controller
 {
+    /**
+     * Render content Page
+     */
     public function renderContentPageAction()
     {
-        $context = $this->container->get('context');
-        $metaLoader = $this->container->get('swp_template_engine_loader_chain');
-        $currentPage = $context->getCurrentPage();
-
-        $article = $metaLoader->load('article', ['contentPath' => $currentPage['contentPath']]);
-        if ($article) {
-            $context->registerMeta('article', $article);
-        }
-
-        return $this->render('views/'.$currentPage['templateName']);
+        return $this->renderPage('content');
     }
 
+    /**
+     * Render container Page
+     *
+     * @param string $contentSlug
+     */
     public function renderContainerPageAction($contentSlug)
+    {
+        return $this->renderPage('container', ['slug' => $contentSlug]);
+    }
+
+    /**
+     * Render Page
+     *
+     * @param string $type
+     * @param array  $parameters
+     */
+    private function renderPage($type, $parameters = [])
     {
         $context = $this->container->get('context');
         $metaLoader = $this->container->get('swp_template_engine_loader_chain');
         $currentPage = $context->getCurrentPage();
 
+        if ($type == 'content') {
+            $article = $metaLoader->load('article', ['contentPath' => $currentPage['contentPath']]);
+        } else if ($type == 'container') {
+            $article = $metaLoader->load('article', $parameters);
+        }
 
-        $article = $metaLoader->load('article', ['slug' => $contentSlug]);
         if ($article) {
             $context->registerMeta('article', $article);
-        } else {
-            return new NotFoundHttpException('Not Found');
         }
 
         return $this->render('views/'.$currentPage['templateName']);
