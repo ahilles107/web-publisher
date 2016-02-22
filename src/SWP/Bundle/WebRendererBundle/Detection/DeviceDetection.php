@@ -86,7 +86,9 @@ class DeviceDetection implements DeviceDetectionInterface
     public function setUserAgentFromRequest(RequestStack $requestStack)
     {
         $request = $requestStack->getCurrentRequest();
-        $this->setUserAgent($request->headers->get('User-Agent'));
+        if (!is_null($request)) {
+            $this->setUserAgent($request->headers->get('User-Agent'));
+        }
     }
 
     /**
