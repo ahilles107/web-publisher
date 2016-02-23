@@ -16,6 +16,8 @@ namespace SWP\Bundle\WebRendererBundle\Locator;
 use Sylius\Bundle\ThemeBundle\Model\ThemeInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Sylius\Bundle\ThemeBundle\Locator\ResourceLocatorInterface;
+use SWP\Bundle\WebRendererBundle\Detection\DeviceDetectionInterface;
+
 
 class ApplicationResourceLocator implements ResourceLocatorInterface
 {
@@ -24,18 +26,15 @@ class ApplicationResourceLocator implements ResourceLocatorInterface
      */
     private $filesystem;
 
-    private $deviceDetector;
-
-    private $lookForDeviceTemplate;
+    private $deviceDetection;
 
     /**
      * @param Filesystem $filesystem
      */
-    public function __construct(Filesystem $filesystem, $deviceDetector, $lookForDeviceTemplate = false)
+    public function __construct(Filesystem $filesystem, DeviceDetectionInterface $deviceDetection)
     {
         $this->filesystem = $filesystem;
-        $this->deviceDetector = $deviceDetector;
-        $this->lookForDeviceTemplate = $lookForDeviceTemplate;
+        $this->deviceDetection = $deviceDetection;
     }
 
     /**
@@ -55,11 +54,11 @@ class ApplicationResourceLocator implements ResourceLocatorInterface
 
     public function getApplicationPaths($resourceName, ThemeInterface $theme)
     {
-        $paths = array();
-        if ($this->lookForDeviceTemplate) {
-            $paths[] = sprintf('%s/%s/%s', $theme->getPath(), $this->deviceDetector->getType(), $resourceName);
+        $paths = array(sprintf('%s/%s', $theme->getPath(), $resourceName));
+        if ($this->deviceDetection->getType() !== null) {
+            $paths[] = sprintf('%s/%s/%s', $theme->getPath(), $this->deviceDetection->getType(), $resourceName);
+            krsort($paths);
         }
-        $paths[] = sprintf('%s/%s', $theme->getPath(), $resourceName);
 
         return $paths;
     }

@@ -11,14 +11,11 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-    swp_renderer.detection.device_detection:
+    swp_webrenderer.detection.device_detection:
         class: SWP\Bundle\WebRendererBundle\Detection\DeviceDetection
-        calls:
-            - [setUserAgentFromRequest, ["@request_stack"]]
 
     sylius.theme.locator.application_resource:
         class: SWP\Bundle\WebRendererBundle\Locator\ApplicationResourceLocator
         arguments:
             - "@filesystem"
-            - "@swp_renderer.detection.device_detection"
-            - true
+            - "@swp_webrenderer.detection.device_detection"

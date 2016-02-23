@@ -18,7 +18,6 @@
 namespace SWP\Bundle\WebRendererBundle\Detection;
 
 use SWP\Bundle\WebRendererBundle\Detection\DeviceDetectionInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class DeviceDetection implements DeviceDetectionInterface
 {
@@ -83,14 +82,6 @@ class DeviceDetection implements DeviceDetectionInterface
         $this->userAgent = $userAgent;
     }
 
-    public function setUserAgentFromRequest(RequestStack $requestStack)
-    {
-        $request = $requestStack->getCurrentRequest();
-        if (!is_null($request)) {
-            $this->setUserAgent($request->headers->get('User-Agent'));
-        }
-    }
-
     /**
      * @param array $devices
      */
@@ -101,6 +92,10 @@ class DeviceDetection implements DeviceDetectionInterface
 
     protected function init()
     {
+        if (null === $this->userAgent) {
+            return;
+        }
+
         if (null === $this->type || null === $this->device) {
             list($device, $type) = $this->determineDevice($this->userAgent);
             $this->device = $device;
