@@ -72,7 +72,7 @@ class DeviceDetection implements DeviceDetectionInterface
     }
 
     /**
-     * @param string $userAgent
+     * {@inheritdoc}
      */
     public function setUserAgent($userAgent)
     {
@@ -123,9 +123,9 @@ class DeviceDetection implements DeviceDetectionInterface
         return array(null, null);
     }
 
-    /**
-     * @return string
-     */
+     /**
+      * {@inheritdoc}
+      */
     public function getType()
     {
         $this->init();
