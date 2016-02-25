@@ -3,7 +3,7 @@
  /**
   * This file is part of the Superdesk Web Publisher Web Renderer Bundle.
   *
-  * Copyright 2015 Sourcefabric z.u. and contributors.
+  * Copyright 2016 Sourcefabric z.u. and contributors.
   *
   * For the full copyright and license information, please see the
   * AUTHORS and LICENSE files distributed with this source code.
@@ -11,7 +11,7 @@
   * Some parts of that file were taken from the Liip/ThemeBundle
   * (c) Liip AG
   *
-  * @copyright 2015 Sourcefabric z.ú.
+  * @copyright 2016 Sourcefabric z.ú.
   * @license http://www.superdesk.org/license
   */
 
@@ -90,6 +90,9 @@ class DeviceDetection implements DeviceDetectionInterface
         $this->devices = $devices;
     }
 
+    /**
+     * Initialize detection
+     */
     protected function init()
     {
         if (null === $this->userAgent) {
@@ -103,6 +106,12 @@ class DeviceDetection implements DeviceDetectionInterface
         }
     }
 
+    /**
+     * Process userAgent string and determine device and type
+     * @param  string $userAgent
+     *
+     * @return array
+     */
     public function determineDevice($userAgent)
     {
         foreach ($this->devices as $type => $devices) {
