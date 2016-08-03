@@ -11,7 +11,7 @@ interface RouteObjectInterface extends RouteInterface, HierarchyInterface
      * Set the object this url points to.
      *
      * @param mixed $object A content object that can be persisted by the
-     *                      storage layer.
+     *                      storage layer
      */
     public function setContent($object);
 

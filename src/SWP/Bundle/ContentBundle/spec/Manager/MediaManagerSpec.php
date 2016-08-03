@@ -8,7 +8,7 @@
  * For the full copyright and license information, please see the
  * AUTHORS and LICENSE files distributed with this source code.
  *
- * @copyright 2016 Sourcefabric z.ú.
+ * @copyright 2016 Sourcefabric z.ú
  * @license http://www.superdesk.org/license
  */
 namespace spec\SWP\Bundle\ContentBundle\Manager;
@@ -16,7 +16,6 @@ namespace spec\SWP\Bundle\ContentBundle\Manager;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use PhpSpec\ObjectBehavior;
 use SWP\Bundle\ContentBundle\Manager\MediaManager;
-use SWP\Bundle\ContentBundle\Model\FileInterface;
 use SWP\Component\MultiTenancy\Context\TenantContextInterface;
 use SWP\Component\MultiTenancy\PathBuilder\TenantAwarePathBuilder;
 use League\Flysystem\Filesystem;
