@@ -8,7 +8,7 @@
  * For the full copyright and license information, please see the
  * AUTHORS and LICENSE files distributed with this source code.
  *
- * @copyright 2016 Sourcefabric z.ú.
+ * @copyright 2016 Sourcefabric z.ú
  * @license http://www.superdesk.org/license
  */
 namespace SWP\Bundle\ContentBundle\Tests\Controller;
@@ -109,7 +109,7 @@ class ContentPushControllerTest extends WebTestCase
                 'media_id' => 'asdgsadfvasdf4w35qwetasftest',
                 'URL' => 'http://default.localhost/media/asdgsadfvasdf4w35qwetasftest.png',
                 'media' => base64_encode(file_get_contents(__DIR__.'/../Resources/test_file.png')),
-                'mime_type' =>  'image/png',
+                'mime_type' => 'image/png',
                 'filemeta' => [],
             ],
             json_decode($client->getResponse()->getContent(), true)

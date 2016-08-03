@@ -8,7 +8,7 @@
  * For the full copyright and license information, please see the
  * AUTHORS and LICENSE files distributed with this source code.
  *
- * @copyright 2016 Sourcefabric z.ú.
+ * @copyright 2016 Sourcefabric z.ú
  * @license http://www.superdesk.org/license
  */
 namespace SWP\Bundle\ContentBundle\Model;
@@ -21,7 +21,7 @@ class File implements FileInterface
     protected $id;
 
     /**
-     * Uploaded file extension
+     * Uploaded file extension.
      *
      * @var string
      */

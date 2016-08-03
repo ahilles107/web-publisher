@@ -8,29 +8,27 @@
  * For the full copyright and license information, please see the
  * AUTHORS and LICENSE files distributed with this source code.
  *
- * @copyright 2016 Sourcefabric z.ú.
+ * @copyright 2016 Sourcefabric z.ú
  * @license http://www.superdesk.org/license
  */
 namespace SWP\Bundle\ContentBundle\Model;
 
-use SWP\Bundle\ContentBundle\Model\File;
-
 class Image extends File
 {
     /**
-     * @var integer
+     * @var int
      */
     protected $width;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $height;
 
     /**
-     * Get the value of Width
+     * Get the value of Width.
      *
-     * @return integer
+     * @return int
      */
     public function getWidth()
     {
@@ -38,9 +36,9 @@ class Image extends File
     }
 
     /**
-     * Set the value of Width
+     * Set the value of Width.
      *
-     * @param integer width
+     * @param int width
      *
      * @return self
      */
@@ -52,9 +50,9 @@ class Image extends File
     }
 
     /**
-     * Get the value of Height
+     * Get the value of Height.
      *
-     * @return integer
+     * @return int
      */
     public function getHeight()
     {
@@ -62,9 +60,9 @@ class Image extends File
     }
 
     /**
-     * Set the value of Height
+     * Set the value of Height.
      *
-     * @param integer height
+     * @param int height
      *
      * @return self
      */

@@ -8,7 +8,7 @@
  * For the full copyright and license information, please see the
  * AUTHORS and LICENSE files distributed with this source code.
  *
- * @copyright 2016 Sourcefabric z.ú.
+ * @copyright 2016 Sourcefabric z.ú
  * @license http://www.superdesk.org/license
  */
 namespace SWP\Bundle\WebRendererBundle\Theme\Helper;
@@ -25,7 +25,7 @@ class ThemeHelper implements ThemeHelperInterface
     /**
      * ThemeHelper constructor.
      *
-     * @param array $themePaths Paths where themes are stored.
+     * @param array $themePaths Paths where themes are stored
      */
     public function __construct(array $themePaths)
     {
