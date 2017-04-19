@@ -227,7 +227,6 @@ EOT;
     /**
      * @param InputInterface  $input  An InputInterface instance
      * @param OutputInterface $output An OutputInterface instance
-     * @param array           $keys
      */
     protected function getValuesFromUser(InputInterface $input, OutputInterface $output, array $keysAndDefaults)
     {
@@ -272,7 +271,7 @@ EOT;
 
     /**
      * @param Filesystem $filesystem
-     * @param $baseDir
+     * @param string $baseDir
      * @param $fileName
      *
      * @return string
