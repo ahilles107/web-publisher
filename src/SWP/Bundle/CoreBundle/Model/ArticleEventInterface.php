@@ -22,6 +22,6 @@ use SWP\Bundle\AnalyticsBundle\Model\ArticleEventInterface as BaseArticleEventIn
 /**
  * Interface ArticleStatisticsInterface.
  */
-interface ArticleEventsInterface extends BaseArticleEventInterface, TenantAwareInterface
+interface ArticleEventInterface extends BaseArticleEventInterface, TenantAwareInterface
 {
 }
