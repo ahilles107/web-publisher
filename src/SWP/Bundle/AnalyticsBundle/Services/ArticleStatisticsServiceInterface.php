@@ -16,5 +16,5 @@ interface ArticleStatisticsServiceInterface
 
     const KEY_IMPRESSION_TYPE = 'type';
 
-    public function addArticleEvent(int $articleId, string $action, array $extraData): ArticleStatisticsInterface;
+    public function addArticleEvent(int $articleId, string $action, array $data): ArticleStatisticsInterface;
 }

@@ -121,15 +121,15 @@ class ArticleStatisticsService implements ArticleStatisticsServiceInterface
 
         $articleEvent = $this->getArticleEvent($articleStatistics, $article, ArticleEventInterface::ACTION_PAGEVIEW);
         $articleEvent->setPageViewSource($pageViewSource);
-        $articleStatistics->setPageViewsNumber($this->articleEventRepository->getCountForArticleAllPageViews($article) + 1);
+        $articleStatistics->setPageViews($this->articleEventRepository->getCountForArticleAllPageViews($article) + 1);
         if (ArticleEventInterface::PAGEVIEW_SOURCE_INTERNAL === $pageViewSource) {
             $internalPageViewsCount = $this->articleEventRepository->getCountForArticleInternalPageViews($article) + 1;
-            if ($internalPageViewsCount > 0 && $articleStatistics->getImpressionsNumber() > 0) {
-                $articleStatistics->setInternalClickRate(
-                    \round($internalPageViewsCount / $articleStatistics->getImpressionsNumber(), 2)
+            if ($internalPageViewsCount > 0 && $articleStatistics->getImpressions() > 0) {
+                $articleStatistics->setClickRate(
+                    \round($internalPageViewsCount / $articleStatistics->getImpressions(), 2)
                 );
             } else {
-                $articleStatistics->setInternalClickRate(0);
+                $articleStatistics->setClickRate(0);
             }
         }
         $this->articleStatisticsRepository->add($articleStatistics);

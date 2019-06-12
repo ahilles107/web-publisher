@@ -15,61 +15,23 @@ declare(strict_types=1);
 
 namespace SWP\Bundle\AnalyticsBundle\Model;
 
-use Doctrine\Common\Collections\Collection;
 use SWP\Bundle\ContentBundle\Model\ArticleInterface;
-use SWP\Component\Storage\Model\PersistableInterface;
 
-/**
- * Interface ArticleStatisticsInterface.
- */
-interface ArticleStatisticsInterface extends PersistableInterface
+interface ArticleStatisticsInterface
 {
-    /**
-     * @return ArticleInterface
-     */
     public function getArticle(): ArticleInterface;
 
-    /**
-     * @param ArticleInterface $article
-     */
     public function setArticle(ArticleInterface $article): void;
 
-    /**
-     * @return int
-     */
-    public function getImpressionsNumber(): int;
+    public function getImpressions(): int;
 
-    /**
-     * @param int $impressionsNumber
-     */
-    public function setImpressionsNumber(int $impressionsNumber): void;
+    public function setImpressions(int $impressionsNumber): void;
 
-    /**
-     * @return int
-     */
-    public function getPageViewsNumber(): int;
+    public function getPageViews(): int;
 
-    /**
-     * @param int $pageViewsNumber
-     */
-    public function setPageViewsNumber(int $pageViewsNumber): void;
+    public function setPageViews(int $pageViewsNumber): void;
 
-    /**
-     * @return Collection
-     */
-    public function getEvents(): Collection;
+    public function getClickRate(): float;
 
-    /**
-     * @param Collection $events
-     */
-    public function setEvents(Collection $events): void;
-
-    /**
-     * @param ArticleEventInterface $articleEvent
-     */
-    public function addEvent(ArticleEventInterface $articleEvent);
-
-    public function getInternalClickRate(): float;
-
-    public function setInternalClickRate(float $internalClickRate): void;
+    public function setClickRate(float $internalClickRate): void;
 }

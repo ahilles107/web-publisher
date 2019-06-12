@@ -1,0 +1,6 @@
+aws:
+    version: latest
+    region: "%env(DYNAMODB_AWS_REGION)%"
+    credentials:
+        key: "%env(DYNAMODB_AWS_KEY)%"
+        secret: "%env(DYNAMODB_AWS_SECRET)%"

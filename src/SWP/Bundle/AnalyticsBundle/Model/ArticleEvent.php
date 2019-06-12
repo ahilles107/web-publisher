@@ -16,53 +16,35 @@ declare(strict_types=1);
 
 namespace SWP\Bundle\AnalyticsBundle\Model;
 
+use DateTime;
 use SWP\Bundle\ContentBundle\Model\RouteInterface;
 use SWP\Bundle\ContentBundle\Model\ArticleInterface;
-use SWP\Component\Common\Model\TimestampableInterface;
-use SWP\Component\Common\Model\TimestampableTrait;
 
-class ArticleEvent implements ArticleEventInterface, TimestampableInterface
+class ArticleEvent implements ArticleEventInterface
 {
-    use TimestampableTrait;
-
-    /**
-     * @var null|int
-     */
-    protected $id;
-
-    /**
-     * @var string
-     */
     protected $action;
 
-    /**
-     * @var string
-     */
     protected $pageViewSource;
 
-    /**
-     * @var null|RouteInterface
-     */
     protected $impressionRoute;
 
-    /**
-     * @var null|ArticleInterface
-     */
     protected $impressionArticle;
 
-    /**
-     * @var null|string
-     */
     protected $impressionType;
 
-    /**
-     * @var ArticleStatisticsInterface
-     */
-    protected $articleStatistics;
+    protected $createdAt;
 
-    public function getId(): ?int
+    protected $uuid;
+
+    public function __construct(string $uuid, string $action)
     {
-        return $this->id;
+        $this->uuid = $uuid;
+        $this->action = $action;
+    }
+
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
     }
 
     public function getAction(): string
@@ -115,13 +97,13 @@ class ArticleEvent implements ArticleEventInterface, TimestampableInterface
         $this->impressionType = $impressionType;
     }
 
-    public function getArticleStatistics(): ArticleStatisticsInterface
+    public function getCreatedAt()
     {
-        return $this->articleStatistics;
+        return $this->createdAt;
     }
 
-    public function setArticleStatistics(ArticleStatisticsInterface $articleStatistics): void
+    public function setCreatedAt(DateTime $createdAt)
     {
-        $this->articleStatistics = $articleStatistics;
+        $this->createdAt = $createdAt;
     }
 }

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the Superdesk Web Publisher Content Bundle.
+ * This file is part of the Superdesk Web Publisher Content List Component.
  *
  * Copyright 2017 Sourcefabric z.ú. and contributors.
  *
@@ -14,7 +14,7 @@ declare(strict_types=1);
  * @license http://www.superdesk.org/license
  */
 
-namespace SWP\Bundle\AnalyticsBundle\Model;
+namespace SWP\Component\ContentList\Model;
 
 trait ContentListsAwareTrait
 {

@@ -16,56 +16,22 @@ declare(strict_types=1);
 
 namespace SWP\Bundle\AnalyticsBundle\Repository;
 
-use SWP\Bundle\AnalyticsBundle\Model\ArticleEventInterface;
 use SWP\Bundle\ContentBundle\Model\ArticleInterface;
-use SWP\Bundle\StorageBundle\Doctrine\ORM\EntityRepository;
 
-class ArticleEventRepository extends EntityRepository implements ArticleEventRepositoryInterface
+class ArticleEventRepository implements ArticleEventRepositoryInterface
 {
     public function getCountForArticleInternalPageViews(ArticleInterface $article): int
     {
-        $qb = $this->createQueryBuilder('ae')
-            ->select('COUNT(ae.id)')
-            ->andWhere('ae.action = :action')
-            ->andWhere('ae.pageViewSource = :pageviewSource')
-            ->leftJoin('ae.articleStatistics', 'ast')
-            ->andWhere('ast.article = :article')
-            ->setParameters([
-                'article' => $article,
-                'action' => ArticleEventInterface::ACTION_PAGEVIEW,
-                'pageviewSource' => ArticleEventInterface::PAGEVIEW_SOURCE_INTERNAL,
-            ]);
-
-        return (int) $qb->getQuery()->getSingleScalarResult();
+        return 0;
     }
 
     public function getCountForArticleAllPageViews(ArticleInterface $article): int
     {
-        $qb = $this->createQueryBuilder('ae')
-            ->select('COUNT(ae.id)')
-            ->andWhere('ae.action = :action')
-            ->leftJoin('ae.articleStatistics', 'ast')
-            ->andWhere('ast.article = :article')
-            ->setParameters([
-                'article' => $article,
-                'action' => ArticleEventInterface::ACTION_PAGEVIEW,
-            ]);
-
-        return (int) $qb->getQuery()->getSingleScalarResult();
+        return 0;
     }
 
     public function getCountForArticleAllImpressions(ArticleInterface $article): int
     {
-        $qb = $this->createQueryBuilder('ae')
-            ->select('COUNT(ae.id)')
-            ->andWhere('ae.action = :action')
-            ->leftJoin('ae.articleStatistics', 'ast')
-            ->andWhere('ast.article = :article')
-            ->setParameters([
-                'article' => $article,
-                'action' => ArticleEventInterface::ACTION_IMPRESSION,
-            ]);
-
-        return (int) $qb->getQuery()->getSingleScalarResult();
+        return 0;
     }
 }

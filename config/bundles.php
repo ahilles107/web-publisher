@@ -64,4 +64,5 @@ return [
     Pixers\DoctrineProfilerBundle\PixersDoctrineProfilerBundle::class => ['dev' => true, 'test' => true],
     Liip\FunctionalTestBundle\LiipFunctionalTestBundle::class => ['test' => true],
     FriendsOfBehat\SymfonyExtension\Bundle\FriendsOfBehatSymfonyExtensionBundle::class => ['test' => true],
+    Aws\Symfony\AwsBundle::class => ['all' => true],
 ];

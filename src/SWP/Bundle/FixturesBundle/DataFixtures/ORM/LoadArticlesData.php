@@ -584,18 +584,18 @@ class LoadArticlesData extends AbstractFixture implements OrderedFixtureInterfac
         /** @var ArticleStatisticsInterface $articleStatistics */
         $articleStatistics = $this->container->get('swp.factory.article_statistics')->create();
         $articleStatistics->setArticle($article);
-        $articleStatistics->setPageViewsNumber($pageViewsNumber);
+        $articleStatistics->setPageViews($pageViewsNumber);
 
         foreach ($pageViewsDates as $dateValue => $number) {
             for ($i = $number; $i > 0; --$i) {
                 $articleEvent = new ArticleEvent();
-                $articleEvent->setArticleStatistics($articleStatistics);
                 $articleEvent->setAction(ArticleEventInterface::ACTION_PAGEVIEW);
                 $date = new \DateTime();
                 $date->modify($dateValue);
-                $date->setTime(mt_rand(0, 23), (int) str_pad((string) mt_rand(0, 59), 2, '0', STR_PAD_LEFT));
+                $date->setTime(random_int(0, 23), (int) str_pad((string) random_int(0, 59), 2, '0', STR_PAD_LEFT));
                 $articleEvent->setCreatedAt($date);
-                $manager->persist($articleEvent);
+
+                throw new \Exception('Not implemented - use articles statistics service (or manager) to save in database');
             }
         }
 

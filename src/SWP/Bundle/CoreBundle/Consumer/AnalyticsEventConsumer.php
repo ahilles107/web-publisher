@@ -61,13 +61,13 @@ final class AnalyticsEventConsumer implements ConsumerInterface
     private $articleResolver;
 
     public function __construct(
-        ArticleStatisticsServiceInterface $articleStatisticsService,
+//        ArticleStatisticsServiceInterface $articleStatisticsService,
         TenantResolver $tenantResolver,
         TenantContextInterface $tenantContext,
         UrlMatcherInterface $matcher,
         ArticleResolverInterface $articleResolver
     ) {
-        $this->articleStatisticsService = $articleStatisticsService;
+//        $this->articleStatisticsService = $articleStatisticsService;
         $this->tenantResolver = $tenantResolver;
         $this->tenantContext = $tenantContext;
         $this->matcher = $matcher;

@@ -15,11 +15,11 @@ declare(strict_types=1);
 
 namespace SWP\Bundle\AnalyticsBundle\Model;
 
+use DateTime;
 use SWP\Bundle\ContentBundle\Model\RouteInterface;
 use SWP\Bundle\ContentBundle\Model\ArticleInterface;
-use SWP\Component\Storage\Model\PersistableInterface;
 
-interface ArticleEventInterface extends PersistableInterface
+interface ArticleEventInterface
 {
     const ACTION_IMPRESSION = 'impression';
 
@@ -59,7 +59,7 @@ interface ArticleEventInterface extends PersistableInterface
 
     public function setImpressionType(?string $impressionType): void;
 
-    public function getArticleStatistics(): ArticleStatisticsInterface;
+    public function getCreatedAt();
 
-    public function setArticleStatistics(ArticleStatisticsInterface $articleStatistics): void;
+    public function setCreatedAt(DateTime $createdAt);
 }

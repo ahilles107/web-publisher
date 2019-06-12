@@ -177,7 +177,7 @@ class FakeArticlesGenerator implements FakeArticlesGeneratorInterface
         /** @var ArticleStatisticsInterface $articleStatistics */
         $articleStatistics = $this->articleStatisticsFactory->create();
         $articleStatistics->setArticle($article);
-        $articleStatistics->setPageViewsNumber(0);
+        $articleStatistics->setPageViews(0);
         $this->articleRepository->persist($articleStatistics);
 
         return $articleStatistics;

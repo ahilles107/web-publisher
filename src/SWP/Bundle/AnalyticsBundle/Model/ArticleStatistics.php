@@ -14,152 +14,59 @@
 
 namespace SWP\Bundle\AnalyticsBundle\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use SWP\Bundle\ContentBundle\Model\ArticleInterface;
 use SWP\Component\Common\Model\TimestampableInterface;
 use SWP\Component\Common\Model\TimestampableTrait;
 
-/**
- * Class ArticleStatistics.
- */
 class ArticleStatistics implements ArticleStatisticsInterface, TimestampableInterface
 {
     use TimestampableTrait;
 
-    /**
-     * @var int
-     */
-    protected $id;
-
-    /**
-     * @var ArticleInterface
-     */
     protected $article;
 
-    /**
-     * @var int
-     */
-    protected $impressionsNumber = 0;
+    protected $impressions = 0;
 
-    /**
-     * @var int
-     */
-    protected $pageViewsNumber = 0;
+    protected $pageViews = 0;
 
-    /**
-     * @var float
-     */
-    protected $internalClickRate = 0;
+    protected $clickRate = 0;
 
-    /**
-     * @var Collection
-     */
-    protected $events;
-
-    /**
-     * ArticleStatistics constructor.
-     */
-    public function __construct()
-    {
-        $this->events = new ArrayCollection();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getArticle(): ArticleInterface
     {
         return $this->article;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setArticle(ArticleInterface $article): void
     {
         $this->article = $article;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getImpressionsNumber(): int
+    public function getImpressions(): int
     {
-        if (null === $this->impressionsNumber) {
-            return 0;
-        }
-
-        return $this->impressionsNumber;
+        return $this->impressions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setImpressionsNumber(int $impressionsNumber): void
+    public function setImpressions(int $impressions): void
     {
-        $this->impressionsNumber = $impressionsNumber;
+        $this->impressions = $impressions;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getPageViewsNumber(): int
+    public function getPageViews(): int
     {
-        if (null === $this->pageViewsNumber) {
-            return 0;
-        }
-
-        return $this->pageViewsNumber;
+        return $this->pageViews;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setPageViewsNumber(int $pageViewsNumber): void
+    public function setPageViews(int $pageViews): void
     {
-        $this->pageViewsNumber = $pageViewsNumber;
+        $this->pageViews = $pageViews;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getEvents(): Collection
+    public function getClickRate(): float
     {
-        return $this->events;
+        return $this->clickRate;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setEvents(Collection $events): void
+    public function setClickRate(float $clickRate): void
     {
-        $this->events = $events;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addEvent(ArticleEventInterface $articleEvent): void
-    {
-        $this->events->add($articleEvent);
-    }
-
-    public function getInternalClickRate(): float
-    {
-        return $this->internalClickRate;
-    }
-
-    public function setInternalClickRate(float $internalClickRate): void
-    {
-        $this->internalClickRate = $internalClickRate;
+        $this->clickRate = $clickRate;
     }
 }

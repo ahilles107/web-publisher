@@ -18,39 +18,25 @@ namespace SWP\Bundle\AnalyticsBundle\EventListener;
 
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\Event\FinishRequestEvent;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\Event\PostResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
+use Symfony\Component\HttpKernel\Event\TerminateEvent;
 
-/**
- * Class AnalyticsEventListener.
- */
 class AnalyticsEventListener
 {
-    const TERMINATE_IMMEDIATELY = 'terminate-immediately';
+    public const TERMINATE_IMMEDIATELY = 'terminate-immediately';
 
-    const EVENT_ENDPOINT = '_swp_analytics';
+    public const EVENT_ENDPOINT = '_swp_analytics';
 
-    /**
-     * @var ProducerInterface
-     */
     protected $producer;
 
-    /**
-     * AnalyticsEventListener constructor.
-     *
-     * @param ProducerInterface $producer
-     */
     public function __construct(ProducerInterface $producer)
     {
         $this->producer = $producer;
     }
 
-    /**
-     * @param GetResponseEvent $event
-     */
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
         if (strpos($request->getPathInfo(), self::EVENT_ENDPOINT) &&
@@ -71,10 +57,7 @@ class AnalyticsEventListener
         }
     }
 
-    /**
-     * @param FilterResponseEvent $event
-     */
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event): void
     {
         $response = $event->getResponse();
 
@@ -83,10 +66,7 @@ class AnalyticsEventListener
         }
     }
 
-    /**
-     * @param FinishRequestEvent $event
-     */
-    public function onKernelFinishRequest(FinishRequestEvent $event)
+    public function onKernelFinishRequest(FinishRequestEvent $event): void
     {
         $request = $event->getRequest();
         if (strpos($request->getPathInfo(), self::EVENT_ENDPOINT)) {
@@ -94,10 +74,7 @@ class AnalyticsEventListener
         }
     }
 
-    /**
-     * @param PostResponseEvent $event
-     */
-    public function onKernelTerminate(PostResponseEvent $event)
+    public function onKernelTerminate(TerminateEvent $event): void
     {
         $response = $event->getResponse();
         if ($response->headers->has(self::TERMINATE_IMMEDIATELY)) {

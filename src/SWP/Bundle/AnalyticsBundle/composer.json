@@ -2,7 +2,7 @@
   "name": "swp/analytics-bundle",
   "type": "symfony-bundle",
   "description": "Bundle used for internal analytics in Superdesk Publisher.",
-  "keywords": ["analytics", "superdesk", "webpublisher"],
+  "keywords": ["analytics", "superdesk", "superdesk publisher", "publisher"],
   "license":"AGPL-3.0",
   "minimum-stability": "dev",
   "authors": [
@@ -13,9 +13,15 @@
   ],
   "require": {
     "php": "^7.3",
-    "php-amqplib/rabbitmq-bundle": "^1.10"
+    "php-amqplib/rabbitmq-bundle": "^1.10",
+    "aws/aws-sdk-php-symfony": "^2.0",
+    "symfony/http-kernel": "^4.3",
+    "symfony/http-foundation": "^4.3",
+    "symfony/config": "~4.3",
+    "symfony/dependency-injection": "~4.3"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-master",
     "phpunit/phpunit": "5.*"
   },
   "autoload": {
