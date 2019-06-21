@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace SWP\Bundle\CoreBundle\Consumer;
 
 use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Driver\PDOException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\ORMException;
 use Exception;
@@ -89,8 +90,8 @@ class ContentPushConsumer implements ConsumerInterface
             return $this->doExecute($msg);
         } catch (DBALException | ORMException $e) {
             throw $e;
-        } catch (Exception $e) {
-            $this->logger->error($e->getMessage(), ['trace' => $e->getTraceAsString()]);
+        } catch (PDOException | Exception $e) {
+            $this->logger->error($e->getMessage(), ['trace' => $e->getTraceAsString(), 'msg' => $msg]);
 
             return ConsumerInterface::MSG_REJECT;
         }
